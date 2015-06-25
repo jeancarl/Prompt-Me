@@ -1,0 +1,15 @@
+{
+  "name": "prompt-me",
+  "description": "Prompt Me app for Node.js",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "nodejs app"
+  },
+  "dependencies": {
+    "express": "3.1.0",
+    "less-middleware": "*",
+    "evernote": "*",
+    "body-parser": "*"
+  }
+}

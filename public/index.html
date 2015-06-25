@@ -1,0 +1,38 @@
+<!-- Filename: public/index.html -->
+<!DOCTYPE html> 
+<html ng-app="promptMeApp">
+	<head>
+		<meta charset="utf-8">
+		<title>Prompt Me!</title> 
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+		<script src="promptme.js"></script>
+	</head> 
+	<body ng-controller="promptMeCtrl" style="font-family:Arial"> 
+		<h2>Prompt Me!</h2>
+		<a href="/oauth" ng-hide="loggedIn" style="text-decoration:none">Connect with<br />
+		<img src="https://evernote.com/media/img/logos/evernote_logo_4c-sm.png" /></a>
+
+		<div ng-show="loggedIn">
+			Add a new prompt to 
+			<select ng-model="selectedNotebook">
+				<option ng-repeat="notebook in notebooks" value="{{notebook.notebookid}}">{{notebook.title}}</option>
+			</select>
+			<select ng-model="selectedFrequency">
+				<option ng-repeat="frequency in frequencies" value="{{frequency.interval}}">{{frequency.label}}</option>
+			</select>	
+			starting on
+			<input type="date" ng-model="startDate" />
+			at
+			<input type="time" ng-model="startTime"/>
+			<input type="button" ng-click="subscribe()" value="Subscribe" />
+			
+			<h2>Subscriptions</h2>
+			<div ng-show="subscriptions.length == 0">
+				You don't have any subscriptions right now!
+			</div>
+			<div ng-repeat="subscription in subscriptions">
+				<input type="button" ng-click="unsubscribe(subscription)" value="Unsubscribe" /> {{getNotebookTitle(subscription.notebookid)}}
+			</div>
+		</div>
+	</body>
+</html>
